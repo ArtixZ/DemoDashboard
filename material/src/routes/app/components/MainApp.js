@@ -6,6 +6,7 @@ import Sidenav from 'components/Sidenav';
 import Footer from 'components/Footer';
 import Customizer from 'components/Customizer';
 
+import VideoComp from '../routes/video';
 import Dashboard from '../routes/dashboard/';
 // import Chart from '../routes/chart/'
 // import ECommerce from '../routes/ecommerce/'
@@ -65,6 +66,7 @@ class MainApp extends React.Component {
             <div className="app-content">
               <div className="full-height">
                   <Route path={`${match.url}/dashboard`} component={Dashboard} />
+                  <Route path={`${match.url}/video`} component={VideoComp} />
                   <Route path={`${match.url}/chart`} component={AsyncChart} />
                   <Route path={`${match.url}/ecommerce`} component={AsyncECommerce} />
                   <Route path={`${match.url}/form`} component={AsyncForm} />
