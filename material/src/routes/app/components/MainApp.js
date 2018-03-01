@@ -7,7 +7,7 @@ import Footer from 'components/Footer';
 import Customizer from 'components/Customizer';
 
 import VideoComp from '../routes/video';
-import Dashboard from '../routes/dashboard/';
+import Dashboard from '../routes/dashboard2/';
 // import Chart from '../routes/chart/'
 // import ECommerce from '../routes/ecommerce/'
 // import Form from '../routes/form/'
