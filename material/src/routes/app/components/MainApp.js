@@ -8,6 +8,7 @@ import Customizer from 'components/Customizer';
 
 import VideoComp from '../routes/video';
 import Dashboard from '../routes/dashboard2/';
+import VideoSceneunderstanding from '../routes/VideoSceneunderstanding';
 // import Chart from '../routes/chart/'
 // import ECommerce from '../routes/ecommerce/'
 // import Form from '../routes/form/'
@@ -67,6 +68,7 @@ class MainApp extends React.Component {
               <div className="full-height">
                   <Route path={`${match.url}/dashboard`} component={Dashboard} />
                   <Route path={`${match.url}/video`} component={VideoComp} />
+                  <Route path={`${match.url}/videounderstanding`} component={VideoSceneunderstanding} />
                   <Route path={`${match.url}/chart`} component={AsyncChart} />
                   <Route path={`${match.url}/ecommerce`} component={AsyncECommerce} />
                   <Route path={`${match.url}/form`} component={AsyncForm} />
