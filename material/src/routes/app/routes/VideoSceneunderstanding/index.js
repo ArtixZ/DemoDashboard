@@ -2,14 +2,15 @@ import React, {Component} from 'react'
 import c3 from 'c3'
 import QueueAnim from 'rc-queue-anim';
 import { Player, ControlBar, BigPlayButton } from 'video-react';
-
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {GridList, GridTile} from 'material-ui/GridList';
 import vod from './cartoon.mp4';
 import "video-react/dist/video-react.css";
 import "./style.scss"
 const datapoints = require("./timeStamp.json");
 
 
-export default class Dashboard2 extends Component {
+export default class VideoSceneUnderstanding extends Component {
     
     componentDidMount() {
         
@@ -48,20 +49,44 @@ export default class Dashboard2 extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-4">
-                            <div className="box box-default">
-                                <div className="box-body" style={{height: 485, overflow: 'scroll'}}>
+                        {/* <div className="col-xl-4">
+                            <div className="box box-default"> */}
+                                {/* <div className="box-body" style={{height: 485, overflow: 'scroll'}}>
                                     {
                                         datapoints.map((item, index) => (
-                                            <article className="clip-item" key={index}>
-                                              <h2 onClick={()=>this.onClipClick(item.Timecode)}><a>{item.Timecode}</a></h2>
-                                              
-                                            </article>
+                                            <Card className="clip-item" key={index} onClick={()=>this.onClipClick(item.Timecode)}>
+                                                <CardHeader
+                                                    title={item.Timecode}
+                                                    subtitle="Subtitle"
+                                                    avatar={require(`./IndexPictures/cartoon.mp4.Scene-${index+1}-OUT.jpg`)}
+                                                />
+                                            </Card>
                                           ))
                                     }
+                                </div> */}
+                                <div style={styles.root}>
+                                    <GridList
+                                        cols={1}
+                                        cellHeight={150}
+                                        padding={2}
+                                        style={styles.gridList}
+                                    >
+                                    {datapoints.map((item, index) => (
+                                        <GridTile
+                                            className="clip-item"
+                                            onClick={()=>this.onClipClick(item.Timecode)}
+                                            key={index}
+                                            title={item.Timecode}
+                                            titlePosition="bottom"
+                                            titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                                        >
+                                            <img src={require(`./IndexPictures/cartoon.mp4.Scene-${index+1}-OUT.jpg`)} />
+                                        </GridTile>
+                                    ))}
+                                    </GridList>
                                 </div>
-                            </div>
-                        </div>
+                            {/* </div>
+                        </div> */}
                     </div>
                 </div>
                 
@@ -70,3 +95,16 @@ export default class Dashboard2 extends Component {
         )
     }
 }
+
+const styles = {
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+    },
+    gridList: {
+      width: 500,
+      height: 485,
+      overflowY: 'auto',
+    },
+  };
