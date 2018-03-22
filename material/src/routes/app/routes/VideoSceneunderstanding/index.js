@@ -72,31 +72,37 @@ export default class VideoSceneUnderstanding extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div style={styles.root}>
-                            <GridList
-                                cols={1}
-                                cellHeight={150}
-                                padding={2}
-                                style={styles.gridList}
-                            >
-                            {this.state.datapoints.map((item, index) => (
-                                <GridTile
-                                    className="clip-item"
-                                    onClick={()=>this.onClipClick(item.Timecode)}
-                                    key={index}
-                                    title={item.Timecode}
-                                    titlePosition="bottom"
-                                    titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                                >
-                                    <img src={require(`./IndexPictures/cartoon.mp4.Scene-${index+1}-OUT.jpg`)} />
-                                </GridTile>
-                            ))}
-                            </GridList>
+                        <div className="col-xl-3">
+                            <div className="box box-default">
+                                <div className="box-body">
+                                    <div style={styles.root}>
+                                        <GridList
+                                            cols={1}
+                                            cellHeight={150}
+                                            padding={6}
+                                            style={styles.gridList}
+                                        >
+                                        {this.state.datapoints.map((item, index) => (
+                                            <GridTile
+                                                className="clip-item"
+                                                onClick={()=>this.onClipClick(item.Timecode)}
+                                                key={index}
+                                                title={item.Timecode}
+                                                titlePosition="bottom"
+                                                titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                                            >
+                                                <img src={require(`./IndexPictures/cartoon.mp4.Scene-${index+1}-OUT.jpg`)} />
+                                            </GridTile>
+                                        ))}
+                                        </GridList>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xl-7" />
-                        <div className="col-xl-5">
+                        <div className="col-xl-3">
                             <TextField hintText="Search..." value={this.state.searchVal} onChange={this.onSearch} />
                         </div>
                     </div>
