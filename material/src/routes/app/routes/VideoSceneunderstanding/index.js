@@ -103,7 +103,11 @@ export default class VideoSceneUnderstanding extends Component {
                     <div className="row">
                         <div className="col-xl-7" />
                         <div className="col-xl-3">
-                            <TextField hintText="Search..." value={this.state.searchVal} onChange={this.onSearch} />
+                            <div className="box box-default">
+                                <div className="box-body">
+                                <TextField hintText="Search..." value={this.state.searchVal} onChange={this.onSearch} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
