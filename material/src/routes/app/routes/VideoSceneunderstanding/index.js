@@ -4,6 +4,7 @@ import { Player, ControlBar, BigPlayButton } from 'video-react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {GridList, GridTile} from 'material-ui/GridList';
 import TextField from 'material-ui/TextField';
+import Chip from 'material-ui/Chip';
 
 import vod from './cartoon.mp4';
 import "video-react/dist/video-react.css";
@@ -14,9 +15,22 @@ const datapoints = require("./timeStamp.json");
 export default class VideoSceneUnderstanding extends Component {
     constructor(props) {
         super(props)
+        
+        const keywords = datapoints.reduce( (pre, cur) => {
+            const { keywords } = cur;
+            keywords.forEach(k => {
+                if(!pre.includes(k)) {
+                    pre.push(k)
+                }
+            });
+            return pre
+        }, [])
+
         this.state={
             searchVal: '',
-            datapoints: datapoints
+            keywords,
+            datapoints,
+            selectedKeywords: [],
         }
     }
     componentDidMount() {
@@ -45,6 +59,32 @@ export default class VideoSceneUnderstanding extends Component {
             searchVal: value,
             datapoints: filteredData
         })
+    }
+
+    onChipSelect = (k, i) => {
+        const { selectedKeywords } = this.state
+        let newAry = [...selectedKeywords]
+        if(selectedKeywords.includes(k)) {
+            newAry.splice(selectedKeywords.findIndex(item => item===k), 1)
+        } else {
+            newAry = [...newAry, k]           
+        }
+
+        const filteredData = newAry.length ? 
+            datapoints.filter((clip) => {
+                const { keywords } = clip;
+                const found = keywords.find((keyword) => {
+                    return newAry.includes(keyword)
+                })
+                return !!found
+            })
+            : datapoints
+
+        this.setState({ 
+            selectedKeywords: [...newAry],
+            datapoints: filteredData,
+        })
+        
     }
 
     render() {
@@ -102,10 +142,26 @@ export default class VideoSceneUnderstanding extends Component {
                     </div>
                     <div className="row">
                         <div className="col-xl-7" />
+
                         <div className="col-xl-3">
                             <div className="box box-default">
                                 <div className="box-body">
-                                <TextField hintText="Search..." value={this.state.searchVal} onChange={this.onSearch} />
+                                    {/* <TextField hintText="Search..." value={this.state.searchVal} onChange={this.onSearch} /> */}
+                                    <div style={styles.wrapper}>
+                                        {this.state.keywords.map((k, i)=> {
+                                            return (
+                                                <Chip
+                                                    key={i}
+                                                    style={styles.chip}
+                                                    onClick={() => this.onChipSelect(k, i)}
+                                                    backgroundColor={this.state.selectedKeywords.includes(k)? '#00BCD4' : 'rgb(224, 224, 224)'}
+                                                >
+                                                    {k}
+                                                </Chip>
+                                            )
+                                        })}
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -120,13 +176,20 @@ export default class VideoSceneUnderstanding extends Component {
 
 const styles = {
     root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
     },
     gridList: {
-      width: 500,
-      height: 485,
-      overflowY: 'auto',
+        width: 500,
+        height: 485,
+        overflowY: 'auto',
+    },
+    chip: {
+        margin: 4,
+    },
+    wrapper: {
+        display: 'flex',
+        flexWrap: 'wrap',
     },
   };
