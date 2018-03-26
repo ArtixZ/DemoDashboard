@@ -129,7 +129,7 @@ export default class VideoSceneUnderstanding extends Component {
                         <div className="col-xl-3">
                             <div className="box box-default">
                                 <div className="box-body">
-                                    <div style={styles.root}>
+                                    <div style={{...styles.root, height: this.state.videoHeight}}>
                                         <GridList
                                             cols={1}
                                             cellHeight={150}
