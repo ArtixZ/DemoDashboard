@@ -93,10 +93,10 @@ class SidebarContent extends React.Component {
     return (
       <ul className="nav" ref={(c) => { this.nav = c; }}>
         <li className="nav-header"><span>Navigation</span></li>
-        <li><FlatButton href="#/app/dashboard"><i className="nav-icon material-icons">dashboard</i><span className="nav-text">Dashboard</span></FlatButton></li>
-        <li><FlatButton href="#/app/video"><i className="nav-icon material-icons">video_library</i><span className="nav-text">Video</span></FlatButton></li>
+        <li><FlatButton href="#/app/dashboard"><i className="nav-icon material-icons">dashboard</i><span className="nav-text">Content Compliance</span></FlatButton></li>
+        {/* <li><FlatButton href="#/app/video"><i className="nav-icon material-icons">video_library</i><span className="nav-text">Video</span></FlatButton></li> */}
         <li><FlatButton href="#/app/videounderstanding"><i className="nav-icon material-icons">video_library</i><span className="nav-text">Video Scene Understanding</span></FlatButton></li>
-        <li>
+        {/* <li>
           <FlatButton href="#/app/ui"><i className="nav-icon material-icons">folder_open</i><span className="nav-text">UI Kit</span></FlatButton>
           <ul>
             <li><FlatButton className="prepend-icon" href="#/app/ui/buttons"><span>Buttons</span></FlatButton></li>
@@ -209,7 +209,7 @@ class SidebarContent extends React.Component {
         <li className="nav-divider" />
         <li className="nav-header"><span>Material Design</span></li>
         <li className="li-small"><FlatButton href="#/app/form/components"><i className="nav-icon nav-dot material-icons color-success">fiber_manual_record</i><span className="nav-text">Form Components</span></FlatButton></li>
-        <li className="li-small"><FlatButton href="#/app/ui/components"><i className="nav-icon nav-dot material-icons color-info">fiber_manual_record</i><span className="nav-text">UI Components</span></FlatButton></li>
+        <li className="li-small"><FlatButton href="#/app/ui/components"><i className="nav-icon nav-dot material-icons color-info">fiber_manual_record</i><span className="nav-text">UI Components</span></FlatButton></li> */}
       </ul>
     );
   }

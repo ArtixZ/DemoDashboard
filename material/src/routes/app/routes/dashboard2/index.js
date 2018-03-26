@@ -41,33 +41,37 @@ export default class Dashboard2 extends Component {
 
         return (
             <div className="container-fluid no-breadcrumbs page-dashboard">
-                <QueueAnim type="bottom" className="ui-animate">
-                    <div className="box box-default">
-                        <div className="box-body">
-                            {/* <video width="800" controls>
-                                <source src={vod} type="video/mp4" />
-                            </video> */}
-                            <div className="video-wrapper">
-                                <Player
-                                    ref="player"
-                                >
-                                    <source src={vod} />
-                                    <ControlBar autoHide={false} />
-                                    <BigPlayButton position="center" />
-                                </Player>
+                <div className="row">
+                    <div className="col-xl-7">
+                        <QueueAnim type="bottom" className="ui-animate">
+                            <div className="box box-default">
+                                <div className="box-body">
+                                    {/* <video width="800" controls>
+                                        <source src={vod} type="video/mp4" />
+                                    </video> */}
+                                    <div className="video-wrapper">
+                                        <Player
+                                            ref="player"
+                                        >
+                                            <source src={vod} />
+                                            <ControlBar autoHide={false} />
+                                            <BigPlayButton position="center" />
+                                        </Player>
+                                    </div>
+                                    
+                                </div>
                             </div>
-                            
-                        </div>
+                            <div className="box box-default">  
+                                <div className="box-body">
+                                    <div 
+                                        id="c3chart" 
+                                        style={{height: 300, width: 800}}
+                                    />
+                                </div>
+                            </div>
+                        </QueueAnim>
                     </div>
-                    <div className="box box-default">  
-                        <div className="box-body">
-                            <div 
-                                id="c3chart" 
-                                style={{height: 300, width: 800}}
-                            />
-                        </div>
-                    </div>
-                </QueueAnim>
+                </div>
                 
             </div>
             

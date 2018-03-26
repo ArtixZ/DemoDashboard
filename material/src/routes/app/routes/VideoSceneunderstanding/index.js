@@ -5,6 +5,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import {GridList, GridTile} from 'material-ui/GridList';
 import TextField from 'material-ui/TextField';
 import Chip from 'material-ui/Chip';
+import ReactResizeDetector from 'react-resize-detector';
 
 import vod from './cartoon.mp4';
 import "video-react/dist/video-react.css";
@@ -31,10 +32,22 @@ export default class VideoSceneUnderstanding extends Component {
             keywords,
             datapoints,
             selectedKeywords: [],
+            videoHeight: null,
         }
     }
     componentDidMount() {
+
+    }
+
+    componentDidUpdate() {
+        console.log(this.refs.player)
         
+    }
+
+    onResize = (w, h) => {
+        this.setState({
+            videoHeight: h
+        })
     }
 
     onClipClick = (timpStamp) => {
@@ -88,7 +101,6 @@ export default class VideoSceneUnderstanding extends Component {
     }
 
     render() {
-
         return (
             <div className="container-fluid no-breadcrumbs page-dashboard">
                 <div className="container-fluid no-breadcrumbs">
@@ -99,7 +111,9 @@ export default class VideoSceneUnderstanding extends Component {
                                     {/* <video width="800" controls>
                                         <source src={vod} type="video/mp4" />
                                     </video> */}
-                                    <div className="video-wrapper">
+                                    <div className="video-wrapper" ref="videoWrapper" id="videoWrapper">
+                                        <ReactResizeDetector handleHeight onResize={this.onResize} />
+                                        
                                         <Player
                                             ref="player"
                                         >
@@ -120,7 +134,7 @@ export default class VideoSceneUnderstanding extends Component {
                                             cols={1}
                                             cellHeight={150}
                                             padding={6}
-                                            style={styles.gridList}
+                                            style={{...styles.gridList, height: this.state.videoHeight}}
                                         >
                                         {this.state.datapoints.map((item, index) => (
                                             <GridTile
@@ -142,7 +156,7 @@ export default class VideoSceneUnderstanding extends Component {
                     </div>
                     <div className="row">
 
-                        <div className="col-xl-12">
+                        <div className="col-xl-10">
                             <div className="box box-default">
                                 <div className="box-body">
                                     {/* <TextField hintText="Search..." value={this.state.searchVal} onChange={this.onSearch} /> */}
@@ -181,7 +195,6 @@ const styles = {
     },
     gridList: {
         width: 500,
-        height: 485,
         overflowY: 'auto',
     },
     chip: {
