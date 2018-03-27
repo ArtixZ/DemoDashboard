@@ -42,7 +42,6 @@ export default class Dashboard2 extends Component {
         return (
             <div className="container-fluid no-breadcrumbs page-dashboard">
                 <div className="row">
-                    <div className="col-xl-7">
                         <QueueAnim type="bottom" className="ui-animate">
                             <div className="box box-default">
                                 <div className="box-body">
@@ -70,7 +69,6 @@ export default class Dashboard2 extends Component {
                                 </div>
                             </div>
                         </QueueAnim>
-                    </div>
                 </div>
                 
             </div>
